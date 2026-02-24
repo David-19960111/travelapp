@@ -1,0 +1,15 @@
+variable "task_definitions" {}
+variable "task_name" {}
+variable "requires_compatibilities" {}
+variable "network_mode" {}
+variable "container_name" {}
+variable "image" {}
+variable "image_version" {}
+variable "cpu" {}
+variable "memory" {}
+variable "container_port" {}
+variable "host_port" {}
+variable "db_hostname_value" {}
+variable "db_username_value" {}
+variable "db_password_value" {}
+variable "db_name_value" {}

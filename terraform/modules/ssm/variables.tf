@@ -1,0 +1,1 @@
+variable "ssm_parameter" {}

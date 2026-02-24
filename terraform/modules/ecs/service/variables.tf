@@ -1,0 +1,10 @@
+variable "service_name" {}
+variable "cluster_id" {}
+variable "task_definition_arn" {}
+variable "launch_type" {}
+variable "desired_count" {}
+variable "subnets_id" {}
+variable "security_groups_id" {}
+variable "target_group_arn" {}
+variable "container_port" {}
+variable "container_name" {}
