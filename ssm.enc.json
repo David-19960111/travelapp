@@ -1,0 +1,25 @@
+{
+	"DB_HOSTNAME": "ENC[AES256_GCM,data:fiDCQ469SmmZ,iv:qf8LNORMUJT6u67rPhc0vrVcNYzeDZY97HLo7Hd6UII=,tag:Ka7mzt9ZjWLxj6RfNisCuw==,type:str]",
+	"DB_USERNAME": "ENC[AES256_GCM,data:bmJybSe0Gss=,iv:gF6b6UUVQTjuFbjPjoEkLI1eDyS7Fl4LlVNq9VkyULo=,tag:MY8vVdBeUXVqKsnW1xC+GQ==,type:str]",
+	"DB_PASSWORD": "ENC[AES256_GCM,data:OoLUN7yubcE6MQqFoHYr3Q==,iv:pTBIaqocx8PgatfFSPhuXiYpfcZ4r+rfv2ebBnIEzmE=,tag:/R3CcYdSqLDSxbTW2hJSpQ==,type:str]",
+	"DB_NAME": "ENC[AES256_GCM,data:JCPogNuUoZZVtQ==,iv:VWyjTcLEQ9ZW29co5aekFNV8pFU1ga6esrNFMFnn72c=,tag:n9YwE82rZVC/j86nQ1FljA==,type:str]",
+	"sops": {
+		"kms": [
+			{
+				"arn": "arn:aws:kms:us-east-2:852198238540:key/40ed46cf-1e40-4a1c-92e8-35094c61b5dc",
+				"created_at": "2026-02-25T23:38:41Z",
+				"enc": "AQICAHicFU4aNdTSL6mJx5Aw2WU6+IZhV59EX9Hx6aiAxYDSoQEUIgWKiEs1+ePLa6h3Rh/yAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMAF6f2vWUnARvLm5/AgEQgDuXHYcY+LiIjodfVciS8OKUuqWJoRkCKFEMJwavBfPWRMKOe0LLsizD93wRWU6XKxJCZCvNkLwKpQUzLw==",
+				"aws_profile": ""
+			}
+		],
+		"gcp_kms": null,
+		"azure_kv": null,
+		"hc_vault": null,
+		"age": null,
+		"lastmodified": "2026-02-25T23:38:41Z",
+		"mac": "ENC[AES256_GCM,data:gIU1MGzTm31BNswOiElCpozT8oPy5HyXKsxg6Np0PisvsK312YXPEDmt8Clde4nLZ2gxlWFkkTjdap14lumJtFi0ZrlDsyFq4tZ4hB8kNfUliU3O4KQ2/ULYmxkt6TyCwOVxETbYOXBTmP5y0IQMU0y6jBXEnq5nR5d0mNrd7Ps=,iv:QTkoLhkWYTsymSmEbTY9RRskEJpO6vV9IatNVTAuSv4=,tag:+VY73ETtvZm0zzvAIdTxmw==,type:str]",
+		"pgp": null,
+		"unencrypted_suffix": "_unencrypted",
+		"version": "3.8.1"
+	}
+}

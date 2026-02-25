@@ -51,8 +51,8 @@ output "ecs_cluster_id" {
 
 #SSM
 output "db_hostname_sops" {
-  value = module.ecs_ssm_sops.DB_HOSTNAME_SOPS 
-  sensitive = true 
+  value     = module.ecs_ssm_sops.DB_HOSTNAME_SOPS
+  sensitive = true
 }
 
 output "db_username_sops" {
@@ -83,5 +83,5 @@ output "DB_NAME_ARN" {
 
 #ACM
 output "acm_arn" {
-  value = module.ecs_acm.acm_arn 
+  value = module.ecs_acm.acm_arn
 }

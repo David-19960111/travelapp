@@ -72,7 +72,7 @@ variable "create_igw_route" {
 variable "sg_name" {
   type        = string
   description = "Security group name"
-  default = null 
+  default     = null
 }
 
 variable "sg_ingress" {
@@ -91,7 +91,7 @@ variable "sg_egress" {
 variable "vpc_id" {
   type        = string
   description = "vpc id"
-  default = null 
+  default     = null
 }
 
 variable "alb_name" {
@@ -359,7 +359,7 @@ variable "launch_type" {
 variable "desired_count" {
   type        = number
   description = "Amount of containers you want to run"
-  default     = 1
+  default     = null
 }
 
 variable "subnets_id" {
@@ -437,13 +437,13 @@ variable "image_version" {
 variable "cpu" {
   type        = number
   description = "CPU to allocate"
-  default     = 512
+  default     = null
 }
 
 variable "memory" {
   type        = number
   description = "Memory to allocate"
-  default     = 1024
+  default     = null
 }
 
 variable "container_port" {
@@ -485,12 +485,75 @@ variable "db_name_value" {
 
 #Elastic Container Registry
 variable "ecr_repo_name" {
-  type = string 
+  type        = string
   description = "ECR Repository name"
 }
 
 variable "mutability" {
-  type = bool 
+  type        = bool
   description = "Enables/Disable mutability"
+  default     = false
+}
+
+#ACM
+variable "domain_name" {
+  type        = string
+  description = "(Required) Domain name for which the certificate should be issued"
+  default     = null
+}
+
+variable "validation_method" {
+  type        = string
+  description = "(Optional) Which method to use for validation. DNS or EMAIL are valid. This parameter must not be set for certificates that were imported into ACM and then into Terraform."
+  default     = null
+}
+
+variable "acm_tag_name" {
+  type        = string
+  description = "ACM Resource tag name"
+}
+
+#Route 53
+variable "zone_id" {
+  type = string
+  description = "(Required) Hosted zone ID for a CloudFront distribution, S3 bucket, ELB, or Route 53 hosted zone"
+  default = null
+}
+
+variable "record_name" {
+  type = string
+  description = "(Required) DNS domain name for a CloudFront distribution, S3 bucket, ELB, or another resource record set in this hosted zone"
+  default = null
+}
+
+variable "record_type" {
+  type = string
+  description = "(Required) The record type. Valid values are A, AAAA, CAA, CNAME, DS, MX, NAPTR, NS, PTR, SOA, SPF, SRV and TXT."
+  default = null
+}
+
+variable "alias_name" {
+  type = string
+  description = "(Required) DNS domain name for a CloudFront distribution, S3 bucket, ELB, or another resource record set in this hosted zone."
+  default = null
+}
+
+variable "alias_zoneid" {
+  type = string
+  description = "(Required) Hosted zone ID for a CloudFront distribution, S3 bucket, ELB, or Route 53 hosted zone."
+  default = null
+}
+
+variable "evaluate_target_health" {
+  type = bool
+  description = "Required) Set to true if you want Route 53 to determine whether to respond to DNS queries using this resource record set by checking the health of the resource record set."
   default = false
 }
+
+#SSM 
+variable "ssm_parameters" {
+  type        = any
+  description = "List of ssm parameters"
+  default     = {}
+}
+

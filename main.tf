@@ -94,7 +94,7 @@ module "ecr" {
   source = "./terraform/modules/ecr"
 
   ecr_repo_name = "travelapp-ecr"
-  mutability = true 
+  mutability    = true
 }
 
 module "ecs_cluster" {
@@ -106,18 +106,18 @@ module "ecs_cluster" {
 module "ecs_taskdef_travelapp" {
   source = "./terraform/modules/ecs/task_definition"
 
-  task_name = "travelapp-tasdefinition"
+  task_name                = "travelapp-tasdefinition"
   requires_compatibilities = ["FARGATE"]
-  network_mode = "awsvpc"
-  image_version = "1"
+  network_mode             = "awsvpc"
+  image_version            = "1"
 
-  container_name = "travelapp-container"
-  image = module.ecr.ecr_repo_url
-  container_port = 80
-  host_port = 80
-  cpu = ""
-  memory = ""
-  task_definitions = ""
+  container_name    = "travelapp-container"
+  image             = module.ecr.ecr_repo_url
+  container_port    = 80
+  host_port         = 80
+  cpu               = 512
+  memory            = 1024
+  task_definitions  = ""
   db_hostname_value = module.ecs_ssm_sops.DB_HOSTNAME_ARN
   db_username_value = module.ecs_ssm_sops.DB_USERNAME_ARN
   db_password_value = module.ecs_ssm_sops.DB_PASSWORD_ARN
@@ -131,12 +131,12 @@ module "ecs_service" {
   cluster_id          = module.ecs_cluster.ecs_cluster_id
   task_definition_arn = module.ecs_taskdef_travelapp.ecs_taskdef_arn
   launch_type         = "FARGATE"
-  desired_count = ""
+  desired_count       = "1"
 
   subnets_id         = module.network.public_subnets_id
   security_groups_id = [module.public_sg.security_group_id]
 
-  target_group_arn = module.ecs_alb.alb_tg_arn 
+  target_group_arn = module.ecs_alb.alb_tg_arn
   container_name   = "travelapp-container"
   container_port   = 80
 }
@@ -181,7 +181,7 @@ module "ecs_alb" {
   https_ssl_policy           = "ELBSecurityPolicy-2016-08"
   https_listener_action_type = "forward"
   https_certificate_arn      = module.ecs_acm.acm_arn
-  https_target_group_arn     = module.ecs_alb.alb_tg_arn 
+  https_target_group_arn     = module.ecs_alb.alb_tg_arn
 
   enable_http_listener      = true
   http_listener_tag         = "travelapp-https-listener"
@@ -202,18 +202,18 @@ module "ecs_alb" {
 module "ecs_r53" {
   source = "./terraform/modules/r53"
 
-  record_name = "travelapp.davidrojas.com"
-  record_type = "A"
-  alias_name = module.ecs_alb.alb_dns
-  alias_zoneid = module.ecs_alb.alb_zone_id
-  zone_id = ""
-  evaluate_target_health = ""
+  record_name            = "travelapp.davidrojas.com"
+  record_type            = "A"
+  alias_name             = module.ecs_alb.alb_dns
+  alias_zoneid           = module.ecs_alb.alb_zone_id
+  zone_id                = ""
+  evaluate_target_health = false 
 }
 
 module "ecs_acm" {
   source = "./terraform/modules/acm"
 
-  domain_name = "travelapp.davidrojas.com"
+  domain_name       = "travelapp.davidrojas.com"
   validation_method = "DNS"
-  acm_tag_name = "travelapp-acm"
+  acm_tag_name      = "travelapp-acm"
 }
