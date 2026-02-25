@@ -1,4 +1,4 @@
-
+#Virtual Private Cloud
 variable "vpc_cidr_block" {
   description = "The VPC IPv4 CIDR block"
   type        = string
@@ -17,7 +17,7 @@ variable "enable_dns_hostnames" {
   default     = false
 }
 
-
+#Subnets
 variable "public_subnet_cidrs" {
   type        = list(string)
   description = "Public subnet CIDR values"
@@ -42,7 +42,7 @@ variable "public_subnets_tag" {
   default     = null
 }
 
-
+#Internet Gateway
 variable "create_igw" {
   type        = bool
   description = "Enables IGW resource creation."
@@ -68,6 +68,7 @@ variable "create_igw_route" {
   default     = false
 }
 
+#Security Groups
 variable "sg_name" {
   type        = string
   description = "Security group name"
@@ -86,6 +87,7 @@ variable "sg_egress" {
   default     = {}
 }
 
+#Load Balancer
 variable "vpc_id" {
   type        = string
   description = "vpc id"
@@ -212,6 +214,7 @@ variable "redirect_status_code" {
   default     = null
 }
 
+#Target Group
 variable "tg_name" {
   type        = string
   description = "Target group name"
@@ -237,7 +240,7 @@ variable "tg_targetype" {
 }
 
 
-##Database variables
+#Database variable
 variable "db_name" {
   type        = string
   description = "Database name"
@@ -303,8 +306,7 @@ variable "publicly_accessible" {
   default = true
 }
 
-
-#Database subnet group variables
+#Database subnets
 variable "db_subnet_group_name" {
   type        = string
   description = "DB Subnet group name"
@@ -323,6 +325,7 @@ variable "vpc_security_group_ids" {
   default     = []
 }
 
+#Elastic Container Service
 variable "ecs_cluster_name" {
   type        = string
   description = "ECS Cluster name"
@@ -413,7 +416,6 @@ variable "network_mode" {
   default     = null
 }
 
-##Container definitions
 variable "container_name" {
   description = "ECS container name"
   type        = string
@@ -479,4 +481,10 @@ variable "db_name_value" {
   type        = any
   description = "DB Name value."
   default     = null
+}
+
+#Elastic Container Registry
+variable "ecr_repo_name" {
+  type = any
+  
 }
