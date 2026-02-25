@@ -485,6 +485,12 @@ variable "db_name_value" {
 
 #Elastic Container Registry
 variable "ecr_repo_name" {
-  type = any
-  
+  type = string 
+  description = "ECR Repository name"
+}
+
+variable "mutability" {
+  type = bool 
+  description = "Enables/Disable mutability"
+  default = false
 }
