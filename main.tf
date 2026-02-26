@@ -4,6 +4,11 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 6.0"
     }
+
+    sops = {
+      source  = "carlpett/sops"
+      version = "~> 0.5"
+    }
   }
 }
 
@@ -133,7 +138,7 @@ module "ecs_service" {
   launch_type         = "FARGATE"
   desired_count       = "1"
 
-  subnets_id         = module.network.public_subnets_id
+  subnets_id         = module.network.public_subnet_id
   security_groups_id = [module.public_sg.security_group_id]
 
   target_group_arn = module.ecs_alb.alb_tg_arn
@@ -141,7 +146,7 @@ module "ecs_service" {
   container_port   = 80
 }
 
-module "ecc_ssm_sops" {
+module "ecs_ssm_sops" {
   source = "./terraform/modules/ssm_sops"
 }
 
@@ -150,8 +155,8 @@ module "rds" {
 
   db_name             = "travelapprds"
   identifier          = "travelapp-identifier"
-  db_username         = module.ecc_ssm_sops.DB_USERNAME_SOPS
-  db_password         = module.ecc_ssm_sops.DB_PASSWORD_SOPS
+  db_username         = module.ecs_ssm_sops.DB_USERNAME_SOPS
+  db_password         = module.ecs_ssm_sops.DB_PASSWORD_SOPS
   engine              = "mysql"
   engine_ver          = "8.0.33"
   instance_class      = "db.t3.micro"

@@ -3,18 +3,18 @@ resource "aws_ecs_task_definition" "main" {
 
   container_definitions = jsonencode([
     {
-        name = "${var.container_name}"
-        image = "${var.image}:${var.image_version}"
-        cpu = var.cpu 
-        memory = var.memory
-        essential = true 
-        portMappings = [
-            {
-                containerPort = var.container_port
-                hostPort      = var.host_port
-            }
-        ]
-        secrets = [
+      name      = "${var.container_name}"
+      image     = "${var.image}:${var.image_version}"
+      cpu       = var.cpu
+      memory    = var.memory
+      essential = true
+      portMappings = [
+        {
+          containerPort = var.container_port
+          hostPort      = var.host_port
+        }
+      ]
+      secrets = [
         {
           name      = "DB_HOST"
           valueFrom = var.db_hostname_value
@@ -34,6 +34,7 @@ resource "aws_ecs_task_definition" "main" {
       ]
     }
   ])
+
   requires_compatibilities = var.requires_compatibilities
   network_mode             = var.network_mode
   cpu                      = var.cpu
@@ -47,6 +48,15 @@ resource "aws_ecs_task_definition" "main" {
 
   tags = {
     Name = var.task_name
+  }
+}
+
+resource "aws_iam_role" "main" {
+  name               = "ECS-TravelApp-Role"
+  assume_role_policy = data.aws_iam_policy_document.main.json
+
+  tags = {
+    Name = "ECS-TravelApp-Role"
   }
 }
 

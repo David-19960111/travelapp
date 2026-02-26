@@ -380,13 +380,13 @@ variable "target_group_arn" {
   default     = null
 }
 
-variable "container_port" {
+variable "containers_port" {
   type        = string
   description = "(Required) Port on the container to associate with the load balancer."
   default     = null
 }
 
-variable "container_name" {
+variable "containers_name" {
   type        = string
   description = "(Required) Name of the container to associate with the load balancer (as it appears in a container definition)."
   default     = null
@@ -487,6 +487,7 @@ variable "db_name_value" {
 variable "ecr_repo_name" {
   type        = string
   description = "ECR Repository name"
+  default = null 
 }
 
 variable "mutability" {
@@ -511,6 +512,7 @@ variable "validation_method" {
 variable "acm_tag_name" {
   type        = string
   description = "ACM Resource tag name"
+  default = null
 }
 
 #Route 53
