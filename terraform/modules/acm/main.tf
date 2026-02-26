@@ -1,5 +1,5 @@
 data "aws_route53_zone" "public" {
-  name = "davidrojas.com."
+  name = "davidro.com"
   private_zone = false 
 }
 
@@ -17,7 +17,7 @@ resource "aws_route53_record" "cert_validation" {
   name = tolist(aws_acm_certificate.main.domain_validation_options)[0].resource_record_name
   records = [ tolist(aws_acm_certificate.main.domain_validation_options)[0].resource_record_value ]
   type = tolist(aws_acm_certificate.main.domain_validation_options)[0].resource_record_type
-  zone_id = data.aws_route53_zone.public.id 
+  zone_id = data.aws_route53_zone.public.zone_id
   ttl = 60
 }
 
